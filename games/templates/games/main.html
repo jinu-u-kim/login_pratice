@@ -1,0 +1,66 @@
+{% load static %} {% load account socialaccount %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>main_page</title>
+  </head>
+  <body>
+    <header>
+      <div class="header__bar container">
+        <div class="header__title">
+          <a href="{% url 'games:main' %}"><span>PIROGRAM CARDGAME</span></a>
+        </div>
+        <div class="header__navbar">
+          {#{% if user in users %}#}
+          <ul>
+            {% if user.is_authenticated %} {{user.username }} 환영합니다!
+            {{user.date_joined}}에 가입하셨네요!
+            <a href="{% url 'logout' %}">로그아웃</a>
+            {%else%}
+            <p>로그인이 필요합니다</p>
+            <a href="{% url 'login' %}">로그인</a>
+            <a href="{% provider_login_url 'kakao' %}">카카오로 로그인 </a>
+            {% endif %}
+          </ul>
+          {#{% else %}#}
+          <ul>
+            <a href="{% url 'games:play' %}">게임하기</a>
+            <a>랭킹보기</a>
+            <a>로그아웃</a>
+          </ul>
+          {#{% endif %}#}
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="main container">
+        <div class="main__desc">
+          <h2 class="main__desc1">전 세계 피로그래머와</h2>
+          <h2 class="main__desc2">한 판 승부 숫자카드게임</h2>
+        </div>
+        {% comment %} {% if user in users %} current_user = request.user.id
+        <h5>{{current_user}}님이 로그인 중</h5>
+        {% end if %} {% endcomment %}
+
+        <div class="game_start">
+          <a href="{% url 'games:play' %}"><button>게임하기</button></a>
+        </div>
+
+        {% comment %} {% for user in users %}
+        <div class="game_list">
+          <a href="{% url 'games:list' %}"><button>전적보기</button></a>
+        </div>
+        {% end for %} {% endcomment %}
+      </div>
+    </main>
+    <footer>
+      <div>
+        <h5>피로그래밍 17기 화이티이이잉</h5>
+        <h5>방구석 피로그래밍 연구소 | 조금 더 길어야 이쁠 것 같아요</h5>
+      </div>
+    </footer>
+  </body>
+</html>

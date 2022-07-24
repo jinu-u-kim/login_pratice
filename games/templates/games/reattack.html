@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>play_reattack</title>
+  </head>
+  <body>
+    <header>
+      <div class="header__bar container">
+        <div class="header__title">
+          <a href="{% url 'games:main' %}"><span>PIROGRAM CARDGAME</span></a>
+        </div>
+        <div class="header__navbar">
+          <ul>
+            <a href="{% url 'games:play' %}">게임하기</a>
+            <a>랭킹보기</a>
+            <a>로그아웃</a>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <form
+      action="{% url 'games:reattack' %}"
+      method="post"
+      enctype="multipart/form-data"
+    >
+    <p>{{game.user1}}에게 반격하세요!</p>
+
+    </br>
+
+      <div class="card_select">
+        <p>내가 고른 카드:</p>
+        <select name="user1_num">
+            {% for card in r_cards %}
+            <option value="{{ card }}">{{ card }}</option>
+            {% endfor %}
+          </select>
+      </div>
+
+    </br>
+      <div>
+        <input type="submit" value="반격하기!" />
+      </div>
+    </form>
+
+    <footer>
+      <div>
+        <h5>피로그래밍 17기 화이티이이잉</h5>
+        <h5>방구석 피로그래밍 연구소 | 조금 더 길어야 이쁠 것 같아요</h5>
+      </div>
+    </footer>
+  </body>
+</html>
